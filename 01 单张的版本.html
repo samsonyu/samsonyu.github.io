@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>切割轮播图</title>
+	<style>
+		  * {
+		  	padding:0;
+		  	margin: 0;
+		  	list-style-type: none;
+		  }
+		.box {
+			width: 560px;
+			height: 380px;
+			border: 1px solid #000;
+			margin: 100px auto;
+		}
+		.box ul {
+			width: 560px;
+			height: 380px;
+			position: relative;
+			transform-style:preserve-3d;
+			transition:transform .5s;
+		}
+		.box ul li{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.box ul li:nth-child(1){
+			transform: rotateX(90deg) translateZ(190px);
+		}
+		.box ul li:nth-child(2){
+			transform: rotateX(-90deg) translateZ(190px);
+		}
+		.box ul li:nth-child(3){
+			transform: rotateX(180deg) translateZ(190px);
+		}
+		.box ul li:nth-child(4){
+			transform: translateZ(190px);
+		}
+		.btn-wrap {
+			width: 762px;
+			margin: 0 auto;
+			position: relative;
+			height: 0px;
+			top: -335px;
+		}
+		.btn-wrap button {
+			width: 100px;
+			height: 100px;
+			border-radius: 5px;
+		}
+		.btn-wrap button:nth-child(1){
+			float: left;
+		}
+		.btn-wrap button:nth-child(2){
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li><img src="imgs/01.jpg" alt=""></li>
+			<li><img src="imgs/02.jpg" alt=""></li>
+			<li><img src="imgs/04.jpg" alt=""></li>
+			<li><img src="imgs/03.jpg" alt=""></li>
+		</ul>
+		<!-- 不要在这里写按钮 -->
+	</div>
+	<div class="btn-wrap">
+		<button>自己脑补漂亮的按钮</button>
+		<button>自己脑补漂亮的按钮</button>
+	</div>
+
+
+	<script type="text/javascript">
+
+	var btn = document.querySelectorAll('button');
+	var box = document.querySelector('.box');
+	var _ul = box.querySelector('ul');
+	var num = 0;
+
+	// 点击的时候产生累加 （一定是累加，因为transform是有一个至的“含义”在里面）
+	btn[1].onclick = function(){
+		num++;
+		_ul.style.transform = 'rotateX('+ num*90 +'deg)';
+	}
+
+	btn[0].onclick = function(){
+		num--;
+		_ul.style.transform = 'rotateX('+ num*90 +'deg)';
+	}
+
+	</script>
+</body>
+</html>
